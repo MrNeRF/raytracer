@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Vec3.hpp"
 #include "Matrix44.hpp"
+#include <cassert>
 
 int main()
 {
@@ -16,5 +17,6 @@ int main()
 
     Matrix44f m;
     std::cout << m << std::endl;
+
     return 0;
 }
