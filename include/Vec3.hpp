@@ -9,12 +9,21 @@ template <typename T>
 class Vec3
 {
     public:
+        Vec3(void) = default;
         Vec3(T _x, T _y, T _z) : x{_x}, y{_y}, z{_z} {};
         Vec3(const Vec3<T> &v) : x{v.x} , y{v.y}, z{v.z} {};
+        Vec3& operator = (Vec3<T> other)
+        {
+            std::swap(this->x, other.x);
+            std::swap(this->y, other.y);
+            std::swap(this->z, other.z);
+            return *this;
+        }
         bool operator == (const Vec3<T> &v) {return x == v.x && y == v.y && z == v.z;}
         Vec3 operator + (const Vec3 &v) const {return Vec3(x + v.x, y + v.y, z + v.z);}
+        Vec3 operator - (const Vec3 &v) const {return Vec3(x - v.x, y - v.y, z - v.z);}
         Vec3 operator * (const T r) const {return Vec3(x * r, y * r ,z * r);}
-        T dot(const Vec3 &v) {return x * v.x + y * v.y + z * v.z;}
+        const T dot(const Vec3 &v) const {return x * v.x + y * v.y + z * v.z;}
         Vec3 cross(const Vec3<T> &v) {return Vec3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);}
         T norm() const {return std::sqrt(x * x + y * y + z * z);}
         Vec3& normalize (void) 
